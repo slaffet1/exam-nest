@@ -24,7 +24,6 @@ export class Employee {
   @Column()
   Salary: number;
 
-  // ✅ Hook pour nettoyer le nom avant insertion
   @BeforeInsert()
   @BeforeUpdate()
   trimFullnom() {

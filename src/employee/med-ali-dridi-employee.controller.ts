@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, UseInterceptors, Query, ParseIntPipe, BadRequestException } from '@nestjs/common';
-import { EmployeeService } from '../service/employee/employee.service';
-import { CreateEmployeeDto } from './create-employee.dto';
+import { EmployeeService } from '../service/employee/med-ali-dridi-employee.service';
+import { CreateEmployeeDto } from './med-ali-dridi-create-employee.dto';
 import { ObjectId } from 'mongodb';
-import { Employee } from './employee.model';
+import { Employee } from './med-ali-dridi-employee.model';
 
 @Controller('employee')
 export class EmployeeController {

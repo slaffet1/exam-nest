@@ -1,7 +1,7 @@
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateEmployeeDto } from 'src/employee/create-employee.dto';
-import { Employee } from 'src/employee/employee.model';
+import { CreateEmployeeDto } from 'src/employee/med-ali-dridi-create-employee.dto';
+import { Employee } from 'src/employee/med-ali-dridi-employee.model';
 import { MongoRepository, ObjectId } from 'typeorm';
 
 @Injectable()
@@ -73,15 +73,11 @@ export class EmployeeService {
       throw new InternalServerErrorException(error.message);
     }
   }
-
-  // ✅ MÉTHODE CORRIGÉE - Recherche par nom avec trim et regex
   async findOneByName(fullnom: string): Promise<Employee | null> {
     try {
-      // Nettoyer le nom de recherche
+
       const trimmedName = fullnom.trim();
-      
-      // Recherche avec regex pour gérer les espaces en fin de chaîne
-      // et rendre la recherche insensible à la casse
+  
       const employee = await this.employeeRepository.findOne({
         where: {
           fullnom: { 
@@ -113,7 +109,7 @@ export class EmployeeService {
         throw new NotFoundException('Employé non trouvé');
       }
       
-      // Calculer le nouveau salaire
+
       employe.Salary += employe.Salary * (percentage / 100);
       
       return await this.employeeRepository.save(employe);
@@ -143,11 +139,10 @@ export class EmployeeService {
         return [];
       }
       
-      // Calculer le salaire moyen
+    
       const totalSalary = employes.reduce((sum, emp) => sum + emp.Salary, 0);
       const averageSalary = totalSalary / employes.length;
       
-      // Filtrer les employés avec un salaire supérieur à la moyenne
       return employes.filter(emp => emp.Salary > averageSalary);
     } catch (error) {
       throw new InternalServerErrorException(error.message);

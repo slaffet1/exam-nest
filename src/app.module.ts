@@ -10,8 +10,8 @@ import { Product } from './products/product.model';
 import { Usine } from './usine/usine.model';
 import { UsineService } from './service/usine/usines.service';
 import { UsineModule } from './usine/usine.module';
-import { EmployeeModule } from './employee/employee.module';
-import { Employee } from './employee/employee.model';
+import { EmployeeModule } from './employee/med-ali-dridi-employee.module';
+import { Employee } from './employee/med-ali-dridi-employee.model';
 
 
 @Module({

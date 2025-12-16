@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { EmployeeController } from './employee.controller';
-import {EmployeeService} from 'src/service/employee/employee.service';
+import { EmployeeController } from './med-ali-dridi-employee.controller';
+import {EmployeeService} from 'src/service/employee/med-ali-dridi-employee.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Employee } from './employee.model';
+import { Employee } from './med-ali-dridi-employee.model';
 
 @Module({
   imports: [
