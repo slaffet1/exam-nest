@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test WebSocket</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    #messages { border: 1px solid #ccc; padding: 10px; height: 200px; overflow-y: auto; margin: 10px 0; }
+    input { width: 300px; padding: 5px; }
+    button { padding: 5px 15px; }
+  </style>
+</head>
+<body>
+  <h1> Test WebSocket Simple</h1>
+  
+  <div id="messages"></div>
+  
+  <input type="text" id="messageInput" placeholder="Écris un message...">
+  <button onclick="sendMessage()">Envoyer</button>
+
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <script>
+    // 1. Se connecter au serveur WebSocket
+    const socket = io('http://localhost:3000');
+
+    // 2. Quand on se connecte
+    socket.on('connect', () => {
+      console.log('✅ Connecté au serveur WebSocket');
+      addMessage('✅ Connecté au serveur');
+    });
+
+    // 3. Fonction pour envoyer un message
+    function sendMessage() {
+      const input = document.getElementById('messageInput');
+      const message = input.value;
+      
+      if (message) {
+        // Émettre l'événement "message" au serveur
+        socket.emit('message', message);
+        addMessage('👤 Moi: ' + message);
+        input.value = '';
+      }
+    }
+
+    // 4. Recevoir la réponse du serveur
+    socket.on('message', (data) => {
+      addMessage('🤖 Serveur: ' + data);
+    });
+
+    // 5. Fonction pour afficher les messages
+    function addMessage(msg) {
+      const div = document.getElementById('messages');
+      div.innerHTML += '<p>' + msg + '</p>';
+      div.scrollTop = div.scrollHeight;
+    }
+  </script>
+</body>
+</html>
