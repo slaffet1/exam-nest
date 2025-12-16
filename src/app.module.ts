@@ -26,7 +26,7 @@ import { Employee } from './employee/med-ali-dridi-employee.model';
       type:'mongodb',
       host:'localhost',
       port:27017,
-      database:'exam_practice_db',
+      database:'medalidridi',
       entities:[Product,Usine,Employee],
       synchronize:true,
     }),
